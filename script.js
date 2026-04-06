@@ -5,11 +5,13 @@ const themeBtn = document.getElementById('theme-toggle');
 
 let currentMode = 'std';
 
+// The button layouts for both modes
 const modes = {
     std: ['C', 'DEL', '%', '/', '7', '8', '9', '*', '4', '5', '6', '-', '1', '2', '3', '+', '0', '.', '(', '='],
     sci: ['C', 'DEL', 'π', '√', 'sin', 'cos', 'tan', '^', 'log', '(', ')', '/', '7', '8', '9', '*', '4', '5', '6', '-', '1', '2', '3', '+', '0', '.', '=', '']
 };
 
+// 1. Function to switch between Light and Dark
 function toggleTheme() {
     const body = document.body;
     if (body.dataset.theme === 'dark') {
@@ -21,25 +23,37 @@ function toggleTheme() {
     }
 }
 
+// 2. Function to switch between Standard and Science
 function setMode(mode) {
     currentMode = mode;
+    // Update UI tabs
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
     document.getElementById(`btn-${mode}`).classList.add('active');
+    // Re-draw the buttons
     render();
 }
 
+// 3. Function to create the buttons in the grid
 function render() {
-    grid.innerHTML = '';
+    grid.innerHTML = ''; // Clear old buttons
     modes[currentMode].forEach(label => {
         const btn = document.createElement('button');
         btn.innerText = label;
         btn.className = 'btn';
-        if (label === '') btn.style.visibility = 'hidden';
+        
+        // Hide the empty placeholder in Science mode
+        if (label === '') {
+            btn.style.visibility = 'hidden';
+        }
+
+        // CRITICAL: This makes the button clickable!
         btn.onclick = () => handleInput(label);
+        
         grid.appendChild(btn);
     });
 }
 
+// 4. Function to handle the actual math
 function handleInput(val) {
     if (val === '') return;
 
@@ -50,16 +64,32 @@ function handleInput(val) {
         display.innerText = display.innerText.length > 1 ? display.innerText.slice(0, -1) : '0';
     } else if (val === '=') {
         try {
-            let expr = display.innerText.replace(/π/g, 'Math.PI').replace(/√/g, 'Math.sqrt').replace(/\^/g, '**');
-            ['sin', 'cos', 'tan', 'log'].forEach(f => { expr = expr.replace(new RegExp(f, 'g'), `Math.${f}`); });
+            // Replace symbols with code-friendly math
+            let expr = display.innerText
+                .replace(/π/g, 'Math.PI')
+                .replace(/√/g, 'Math.sqrt')
+                .replace(/\^/g, '**');
+            
+            ['sin', 'cos', 'tan', 'log'].forEach(f => {
+                expr = expr.replace(new RegExp(f, 'g'), `Math.${f}`);
+            });
+
             let result = eval(expr);
             historyDisplay.innerText = display.innerText + " =";
+            // Round to 2 decimal places so it doesn't break the screen
             display.innerText = Number.isInteger(result) ? result : result.toFixed(2);
-        } catch { display.innerText = "Error"; }
+        } catch {
+            display.innerText = "Error";
+        }
     } else {
-        if (display.innerText === '0' && val !== '.') display.innerText = val;
-        else display.innerText += val;
+        // Handle initial zero
+        if (display.innerText === '0' && val !== '.') {
+            display.innerText = val;
+        } else {
+            display.innerText += val;
+        }
     }
 }
 
+// Start the app in Standard mode
 setMode('std');
