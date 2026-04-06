@@ -1,19 +1,19 @@
 :root {
     --bg-img: url('image_8ea965.jpg'); 
-    --calc-glass: rgba(255, 255, 255, 0.8);
+    --calc-glass: rgba(255, 255, 255, 0.75);
     --text-main: #1a1a1a;
     --accent: #4a5d4d;
-    --btn-bg: rgba(255, 255, 255, 0.95);
-    --shadow: rgba(0, 0, 0, 0.2);
+    --btn-bg: rgba(255, 255, 255, 0.9);
+    --shadow: rgba(0, 0, 0, 0.15);
 }
 
 [data-theme="dark"] {
     --bg-img: url('image_8efb5f.jpg');
-    --calc-glass: rgba(15, 23, 30, 0.9);
+    --calc-glass: rgba(15, 23, 30, 0.85);
     --text-main: #fcfcfc;
     --accent: #a29bfe;
-    --btn-bg: rgba(45, 52, 63, 0.9);
-    --shadow: rgba(0, 0, 0, 0.6);
+    --btn-bg: rgba(45, 52, 63, 0.8);
+    --shadow: rgba(0, 0, 0, 0.5);
 }
 
 body {
@@ -25,22 +25,23 @@ body {
     background-image: var(--bg-img);
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
     background-attachment: fixed;
     transition: background 0.8s ease;
     font-family: 'Segoe UI', sans-serif;
+    overflow: hidden;
 }
 
 .calculator {
-    position: relative;
-    z-index: 10; /* Keeps it above everything */
     background: var(--calc-glass);
-    backdrop-filter: blur(15px);
+    backdrop-filter: blur(20px);
     padding: 30px;
     border-radius: 40px;
     width: 320px;
     box-shadow: 0 25px 50px var(--shadow);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    pointer-events: auto; /* Force clickability */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+    z-index: 10;
 }
 
 #display {
@@ -48,15 +49,14 @@ body {
     font-size: 2.5rem;
     font-weight: 700;
     color: var(--text-main);
-    margin-bottom: 10px;
-    overflow: hidden;
+    margin-bottom: 20px;
 }
 
 .solver-tabs { display: flex; gap: 8px; margin-bottom: 20px; }
 
 .tab-btn {
     flex: 1; padding: 12px; border-radius: 15px; border: none;
-    cursor: pointer; font-weight: 700; color: var(--text-main);
+    cursor: pointer; font-weight: 600; color: var(--text-main);
     background: rgba(0,0,0,0.05);
 }
 
@@ -80,11 +80,11 @@ body {
     justify-content: center;
 }
 
-.btn:hover { background: var(--accent); color: white; transform: scale(1.05); }
+.btn:hover { background: var(--accent); color: white; transform: scale(1.1); }
 
 #theme-toggle {
     position: fixed; top: 20px; right: 20px;
     padding: 12px 24px; border-radius: 30px; border: none;
     background: var(--calc-glass); color: var(--text-main);
-    cursor: pointer; font-weight: 600; z-index: 100;
+    cursor: pointer; font-weight: 600; z-index: 1000;
 }
