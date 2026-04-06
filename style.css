@@ -109,28 +109,41 @@ body {
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
-.buttons {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-    grid-auto-rows: minmax(60px, auto); 
-}
-
 .btn {
+    padding: 15px;
+    border: none;
+    background: var(--btn-bg); 
+    color: var(--text-main);
+    
+    border-radius: 50%;
+    
+    aspect-ratio: 1; 
+    
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+    
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+    
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 15px 0; 
-    width: 100%;
 }
 
 .btn:hover {
-    background: var(--accent);
+    background: var(--accent); 
     color: white;
-    transform: scale(1.1);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
 }
 
-/* Leaf Animation */
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px; 
+    padding: 10px;
+}
 .leaf {
     position: absolute;
     background: var(--accent);
