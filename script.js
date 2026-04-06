@@ -1,7 +1,6 @@
 const display = document.getElementById('display');
 const historyDisplay = document.getElementById('history');
 const grid = document.getElementById('btn-grid');
-const themeBtn = document.getElementById('theme-toggle');
 
 let currentMode = 'std';
 
@@ -12,6 +11,7 @@ const modes = {
 
 function toggleTheme() {
     const body = document.body;
+    const themeBtn = document.getElementById('theme-toggle');
     if (body.dataset.theme === 'dark') {
         body.dataset.theme = 'light';
         themeBtn.innerText = '✨ Light Mode';
@@ -24,8 +24,8 @@ function toggleTheme() {
 function setMode(mode) {
     currentMode = mode;
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    const activeTab = document.getElementById(`btn-${mode}`);
-    if(activeTab) activeTab.classList.add('active');
+    const targetTab = document.getElementById(`btn-${mode}`);
+    if (targetTab) targetTab.classList.add('active');
     render();
 }
 
@@ -37,19 +37,17 @@ function render() {
         btn.innerText = label;
         btn.className = 'btn';
         if (label === '') btn.style.visibility = 'hidden';
-        
         btn.onclick = () => handleInput(label);
-        
         grid.appendChild(btn);
     });
 }
 
 function handleInput(val) {
-    if (val === '' || !display) return;
+    if (!display || val === '') return;
 
     if (val === 'C') {
         display.innerText = '0';
-        if(historyDisplay) historyDisplay.innerText = '';
+        historyDisplay.innerText = '';
     } else if (val === 'DEL') {
         display.innerText = display.innerText.length > 1 ? display.innerText.slice(0, -1) : '0';
     } else if (val === '=') {
@@ -57,7 +55,7 @@ function handleInput(val) {
             let expr = display.innerText.replace(/π/g, 'Math.PI').replace(/√/g, 'Math.sqrt').replace(/\^/g, '**');
             ['sin', 'cos', 'tan', 'log'].forEach(f => { expr = expr.replace(new RegExp(f, 'g'), `Math.${f}`); });
             let result = eval(expr);
-            if(historyDisplay) historyDisplay.innerText = display.innerText + " =";
+            historyDisplay.innerText = display.innerText + " =";
             display.innerText = Number.isInteger(result) ? result : result.toFixed(2);
         } catch { display.innerText = "Error"; }
     } else {
