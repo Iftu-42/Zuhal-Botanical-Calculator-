@@ -112,20 +112,16 @@ body {
 .buttons {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
+    gap: 10px;
+    grid-auto-rows: minmax(60px, auto); 
 }
 
 .btn {
-    padding: 18px;
-    aspect-ratio: 1;
-    border-radius: 50%;
-    border: none;
-    background: var(--btn-bg);
-    color: var(--text-main);
-    font-size: 1.1rem;
-    font-weight: 700; /* Bold numbers */
-    cursor: pointer;
-    transition: 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 0; 
+    width: 100%;
 }
 
 .btn:hover {
