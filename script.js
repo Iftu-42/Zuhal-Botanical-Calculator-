@@ -1,6 +1,7 @@
 const display = document.getElementById('display');
 const historyDisplay = document.getElementById('history');
 const grid = document.getElementById('btn-grid');
+const themeBtn = document.getElementById('theme-toggle');
 
 let currentMode = 'std';
 const modes = {
@@ -9,7 +10,14 @@ const modes = {
 };
 
 function toggleTheme() {
-    document.body.dataset.theme = document.body.dataset.theme === 'dark' ? 'light' : 'dark';
+    const body = document.body;
+    if (body.dataset.theme === 'dark') {
+        body.dataset.theme = 'light';
+        themeBtn.innerText = '✨ Light Mode';
+    } else {
+        body.dataset.theme = 'dark';
+        themeBtn.innerText = '🌙 Dark Mode';
+    }
 }
 
 function setMode(mode) {
@@ -35,14 +43,18 @@ function handleInput(val) {
         display.innerText = '0';
         historyDisplay.innerText = '';
     } else if (val === 'DEL') {
-        display.innerText = display.innerText.slice(0, -1) || '0';
+        display.innerText = display.innerText.length > 1 ? display.innerText.slice(0, -1) : '0';
     } else if (val === '=') {
         try {
-            let expr = display.innerText.replace('π', 'Math.PI').replace('√', 'Math.sqrt').replace('^', '**');
-            // Advanced solver for sin/cos/tan
+            let expr = display.innerText
+                .replace(/π/g, 'Math.PI')
+                .replace(/√/g, 'Math.sqrt')
+                .replace(/\^/g, '**');
+            
             ['sin', 'cos', 'tan', 'log'].forEach(f => {
                 expr = expr.replace(new RegExp(f, 'g'), `Math.${f}`);
             });
+
             let result = eval(expr);
             historyDisplay.innerText = display.innerText + " =";
             display.innerText = Number.isInteger(result) ? result : result.toFixed(4);
@@ -50,20 +62,22 @@ function handleInput(val) {
             display.innerText = "Error";
         }
     } else {
-        if (display.innerText === '0') display.innerText = val;
+        if (display.innerText === '0' && val !== '.') display.innerText = val;
         else display.innerText += val;
     }
 }
 
-// Leaf Animation
+// Leaf Particles
 setInterval(() => {
     const leaf = document.createElement('div');
     leaf.className = 'leaf';
     leaf.style.left = Math.random() * 100 + 'vw';
-    leaf.style.width = leaf.style.height = (Math.random() * 15 + 10) + 'px';
+    const size = (Math.random() * 15 + 10) + 'px';
+    leaf.style.width = size;
+    leaf.style.height = size;
     leaf.style.animationDuration = (Math.random() * 5 + 5) + 's';
-    document.getElementById('leaf-container').appendChild(leaf);
+    document.body.appendChild(leaf);
     setTimeout(() => leaf.remove(), 10000);
-}, 800);
+}, 1000);
 
 setMode('std');
