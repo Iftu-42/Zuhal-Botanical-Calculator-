@@ -1,10 +1,10 @@
 /* --- RESET & VARIABLES --- */
 :root {
     --bg-img: url('image_8ea965.jpg'); 
-    --calc-glass: rgba(255, 255, 255, 0.8);
+    --calc-glass: rgba(255, 255, 255, 0.85);
     --text-main: #1a1a1a;
     --accent: #4a5d4d;
-    --btn-bg: rgba(255, 255, 255, 0.9);
+    --btn-bg: rgba(255, 255, 255, 0.95);
     --shadow: rgba(0, 0, 0, 0.15);
 }
 
@@ -29,22 +29,21 @@ body {
     background-attachment: fixed;
     transition: background 0.8s ease;
     font-family: 'Segoe UI', sans-serif;
-    overflow: hidden;
 }
 
-/* --- THE CALCULATOR CONTAINER --- */
+/* --- THE CALCULATOR --- */
 .calculator {
     background: var(--calc-glass);
     backdrop-filter: blur(25px);
     -webkit-backdrop-filter: blur(25px);
     
-    /* FIX: More top padding (70px) so the display isn't cut off by the top edge */
-    padding: 70px 25px 30px 25px; 
+    /* FIX: Massive top padding (90px) to force the display away from the cut edge */
+    padding: 90px 25px 40px 25px; 
     
     border-radius: 40px;
     width: 340px;
     height: auto; 
-    min-height: 550px;
+    min-height: 600px; /* Taller box for Science mode */
     
     box-shadow: 0 25px 50px var(--shadow);
     border: 1px solid rgba(255, 255, 255, 0.3);
@@ -54,21 +53,19 @@ body {
     flex-direction: column;
 }
 
-/* --- DISPLAY FIX --- */
+/* --- DISPLAY --- */
 .display-container {
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
 #display {
     text-align: right;
-    font-size: 2.8rem; /* Bold and clear */
+    font-size: 3rem; 
     font-weight: 700;
     color: var(--text-main);
-    line-height: 1.2;
     word-wrap: break-word;
-    /* FIX: Ensures the numbers don't touch the top edge */
-    padding-top: 10px; 
+    line-height: 1;
 }
 
 #history {
@@ -76,14 +73,14 @@ body {
     font-size: 1rem;
     color: var(--accent);
     text-align: right;
-    opacity: 0.8;
+    margin-bottom: 5px;
 }
 
-/* --- TABS & BUTTONS --- */
+/* --- TABS --- */
 .solver-tabs {
     display: flex;
     gap: 8px;
-    margin-bottom: 25px;
+    margin-bottom: 30px;
     background: rgba(0, 0, 0, 0.05);
     padding: 5px;
     border-radius: 20px;
@@ -105,6 +102,7 @@ body {
     color: white !important;
 }
 
+/* --- BUTTONS --- */
 .buttons {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -113,8 +111,8 @@ body {
 }
 
 .btn {
-    width: 62px;
-    height: 62px;
+    width: 64px;
+    height: 64px;
     border-radius: 50%;
     border: none;
     background: var(--btn-bg);
@@ -131,24 +129,21 @@ body {
 .btn:hover {
     background: var(--accent);
     color: white;
-    transform: scale(1.1);
 }
 
-/* --- THEME TOGGLE FIX --- */
+/* --- THEME TOGGLE --- */
 #theme-toggle {
-    /* FIX: Absolute positioning INSIDE the calculator at the very top */
     position: absolute;
-    top: 20px;
+    top: 25px; /* Moves it down from the very edge */
     left: 50%;
     transform: translateX(-50%);
-    
-    padding: 8px 20px;
-    border-radius: 20px;
-    border: none;
-    background: rgba(255,255,255,0.2);
+    padding: 10px 20px;
+    border-radius: 25px;
+    border: 1px solid rgba(0,0,0,0.1);
+    background: var(--btn-bg);
     color: var(--text-main);
     cursor: pointer;
     font-weight: 600;
-    font-size: 0.8rem;
-    backdrop-filter: blur(5px);
+    font-size: 0.85rem;
+    box-shadow: 0 2px 10px var(--shadow);
 }
