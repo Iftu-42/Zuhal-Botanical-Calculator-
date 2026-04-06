@@ -1,128 +1,13 @@
 :root {
     --bg-img: url('image_8ea965.jpg'); 
-    --calc-glass: rgba(255, 255, 255, 0.7);
+    --calc-glass: rgba(255, 255, 255, 0.75);
     --text-main: #1a1a1a;
     --accent: #4a5d4d;
     --btn-bg: rgba(255, 255, 255, 0.9);
-    --shad:root {
-    --bg-color: #fdfcf8; /* Soft Cream */
-    --calc-glass: rgba(255, 255, 255, 0.7);
-    --text-main: #2d3436;
-    --accent: #4a5d4d; /* Botanical Green */
-    --btn-bg: rgba(255, 255, 255, 0.9);
-    --shadow: rgba(0, 0, 0, 0.1);
+    --shadow: rgba(0, 0, 0, 0.15);
 }
 
 [data-theme="dark"] {
-    --bg-color: #0d1117; /* Space Black */
-    --calc-glass: rgba(20, 25, 35, 0.85);
-    --text-main: #fcfcfc;
-    --accent: #9b59b6; /* Nebula Purple */
-    --btn-bg: rgba(45, 52, 63, 0.8);
-    --shadow: rgba(0, 0, 0, 0.5);
-}
-
-body {
-    margin: 0;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--bg-color);
-    transition: background 0.8s ease;
-    font-family: 'Segoe UI', sans-serif;
-    overflow: hidden;
-}
-
-#dynamic-garden, #dynamic-universe {
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    pointer-events: none;
-    z-index: 1;
-}
-
-/* Hide/Show based on theme */
-body[data-theme="light"] #dynamic-universe { opacity: 0; }
-body[data-theme="dark"] #dynamic-garden { opacity: 0; }
-
-.calculator {
-    background: var(--calc-glass);
-    backdrop-filter: blur(20px);
-    padding: 30px;
-    border-radius: 40px;
-    width: 320px;
-    box-shadow: 0 25px 50px var(--shadow);
-    z-index: 100;
-    border: 1px solid rgba(255,255,255,0.2);
-}
-
-#display {
-    text-align: right;
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: var(--text-main);
-    margin-bottom: 20px;
-}
-
-.solver-tabs { display: flex; gap: 8px; margin-bottom: 20px; }
-
-.tab-btn {
-    flex: 1; padding: 10px; border-radius: 15px; border: none;
-    cursor: pointer; font-weight: 600; color: var(--text-main);
-}
-
-.tab-btn.active { background: var(--accent); color: white; }
-
-.buttons { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
-
-/* FIXED: Perfectly Circular Buttons */
-.btn {
-    aspect-ratio: 1;
-    border-radius: 50%;
-    border: none;
-    background: var(--btn-bg);
-    color: var(--text-main);
-    font-size: 1.2rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: 0.2s;
-    box-shadow: 0 4px 8px var(--shadow);
-}
-
-.btn:hover { background: var(--accent); color: white; transform: scale(1.1); }
-
-/* Asset Styling */
-.growth-item {
-    position: absolute;
-    pointer-events: none;
-    animation: popIn 0.5s ease-out forwards;
-}
-
-@keyframes popIn {
-    0% { transform: scale(0); opacity: 0; }
-    100% { transform: scale(1); opacity: 0.8; }
-}
-
-/* Star Twinkle Animation */
-[data-theme="dark"] .growth-item {
-    animation: twinkle 3s infinite ease-in-out;
-}
-
-@keyframes twinkle {
-    0%, 100% { opacity: 0.3; transform: scale(0.8); }
-    50% { opacity: 1; transform: scale(1.2); }
-}
-
-#theme-toggle {
-    position: fixed; top: 20px; right: 20px;
-    padding: 10px 20px; border-radius: 20px; border: none;
-    background: var(--calc-glass); color: var(--text-main);
-    cursor: pointer; font-weight: 600; z-index: 1000;
-}ow: rgba(0, 0, 0, 0.15);
-}
-
-[data-theme="dark"] {
-  
     --bg-img: url('image_8efb5f.jpg');
     --calc-glass: rgba(15, 23, 30, 0.85);
     --text-main: #fcfcfc;
@@ -135,36 +20,16 @@ body {
     margin: 0;
     height: 100vh;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: var(--bg-img) no-repeat center center/cover;
+    background-image: var(--bg-img);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     transition: background 0.8s ease;
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-family: 'Segoe UI', sans-serif;
     overflow: hidden;
-}
-
-/* Floating Toggle Styling */
-#theme-toggle {
-    position: fixed;
-    top: 30px;
-    background: var(--calc-glass);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    padding: 12px 24px;
-    border-radius: 50px;
-    color: var(--text-main);
-    font-weight: 600;
-    cursor: pointer;
-    box-shadow: 0 8px 32px var(--shadow);
-    transition: 0.3s;
-    z-index: 1000;
-}
-
-#theme-toggle:hover {
-    transform: translateY(-3px);
-    background: var(--accent);
-    color: white;
 }
 
 .calculator {
@@ -172,16 +37,14 @@ body {
     backdrop-filter: blur(20px);
     padding: 30px;
     border-radius: 40px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
     width: 320px;
     box-shadow: 0 25px 50px var(--shadow);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 #display {
-    width: 100%;
-    height: 60px;
     text-align: right;
-    font-size: 2.4rem;
+    font-size: 2.5rem;
     font-weight: 700;
     color: var(--text-main);
     margin-bottom: 20px;
@@ -192,82 +55,44 @@ body {
     font-size: 0.9rem;
     color: var(--accent);
     text-align: right;
-    opacity: 0.8;
 }
 
-.solver-tabs {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-    background: rgba(0,0,0,0.05);
-    padding: 5px;
-    border-radius: 20px;
-}
+.solver-tabs { display: flex; gap: 8px; margin-bottom: 20px; }
 
 .tab-btn {
-    flex: 1;
-    background: transparent;
-    border: none;
-    padding: 10px;
-    border-radius: 15px;
-    cursor: pointer;
-    color: var(--text-main);
-    font-weight: 600;
+    flex: 1; padding: 12px; border-radius: 15px; border: none;
+    cursor: pointer; font-weight: 600; color: var(--text-main);
+    background: rgba(0,0,0,0.05);
     transition: 0.3s;
 }
 
-/* High Contrast Active Tab */
-.tab-btn.active {
-    background: var(--accent);
-    color: white !important;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-}
+.tab-btn.active { background: var(--accent); color: white !important; }
 
+.buttons { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+
+/* Perfectly Circular Buttons */
 .btn {
-    padding: 15px;
-    border: none;
-    background: var(--btn-bg); 
-    color: var(--text-main);
-    
+    aspect-ratio: 1;
     border-radius: 50%;
-    
-    aspect-ratio: 1; 
-    
-    font-size: 1.1rem;
+    border: none;
+    background: var(--btn-bg);
+    color: var(--text-main);
+    font-size: 1.2rem;
     font-weight: 700;
     cursor: pointer;
-    transition: 0.3s;
-    
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
-    
+    transition: 0.2s;
+    box-shadow: 0 4px 8px var(--shadow);
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.btn:hover {
-    background: var(--accent); 
-    color: white;
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
-}
+.btn:hover { background: var(--accent); color: white; transform: scale(1.1); }
 
-.buttons {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 12px; 
-    padding: 10px;
-}
-.leaf {
-    position: absolute;
-    background: var(--accent);
-    opacity: 0.2;
-    border-radius: 0 100%;
-    animation: fall linear infinite;
-    pointer-events: none;
-}
-
-@keyframes fall {
-    0% { transform: translateY(-10vh) rotate(0deg); }
-    100% { transform: translateY(110vh) rotate(360deg); }
+#theme-toggle {
+    position: fixed; top: 20px; right: 20px;
+    padding: 12px 24px; border-radius: 30px; border: none;
+    background: var(--calc-glass); color: var(--text-main);
+    cursor: pointer; font-weight: 600; z-index: 1000;
+    box-shadow: 0 4px 15px var(--shadow);
 }
