@@ -1,14 +1,15 @@
 :root {
-    --bg-img: url('the sky is beautiful_).jpg');
-    --calc-glass: rgba(255, 255, 255, 0.7); /* More opaque for contrast */
-    --text-main: #1a1a1a; /* Very dark text for Light Mode */
-    --accent: #4a5d4d; /* Sage green accent */
+    --bg-img: url('image_8ea965.jpg'); 
+    --calc-glass: rgba(255, 255, 255, 0.7);
+    --text-main: #1a1a1a;
+    --accent: #4a5d4d;
     --btn-bg: rgba(255, 255, 255, 0.9);
     --shadow: rgba(0, 0, 0, 0.15);
 }
 
 [data-theme="dark"] {
-    --bg-img: url('unrealistic moon.webp');
+  
+    --bg-img: url('image_8efb5f.jpg');
     --calc-glass: rgba(15, 23, 30, 0.85);
     --text-main: #fcfcfc;
     --accent: #a29bfe;
