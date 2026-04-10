@@ -29,32 +29,57 @@ body {
     transition: background-image 0.5s ease-in-out;
 }
 
-/* The Glass Effect */
+/* Update the calculator container to stay centered and sized right */
 .glass-calculator {
-    width: 340px;
+    width: 90%;            /* Responsive on small screens */
+    max-width: 360px;      /* Stops it from becoming a long strip */
     padding: 25px;
-    border-radius: 45px; /* Cute rounded look */
+    border-radius: 40px;
     background: var(--glass-color);
-    backdrop-filter: blur(25px) saturate(200%); /* Stronger glassmorphism */
-    -webkit-backdrop-filter: blur(25px) saturate(200%);
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+    backdrop-filter: blur(25px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    margin: auto;          /* Keeps it centered */
 }
 
-/* Buttons */
+/* Fix the button grid! */
+.buttons {
+    display: grid !important; /* Force grid mode */
+    grid-template-columns: repeat(4, 1fr); /* 4 columns for buttons */
+    grid-template-rows: repeat(6, auto);    /* Standard height */
+    gap: 12px;                /* Space between buttons */
+    margin-top: 20px;
+}
+
+/* Ensure buttons stay as cute circles */
 button {
     width: 65px;
     height: 65px;
-    border-radius: 50%; /* Perfect circles */
-    border: none;
-    background: rgba(255, 255, 255, 0.1);
-    color: var(--text-color);
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: all 0.2s ease;
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 50% !important; /* Forces the round look */
+    font-size: 1.1rem;
+    background: rgba(255, 255, 255, 0.15);
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+/* The "0" button usually spans two columns to look nice */
+.span-two {
+    grid-column: span 2;
+    width: 142px;         /* (65px * 2) + 12px gap */
+    border-radius: 40px !important; /* Aesthetic pill shape */
+}
+
+/* Make the scientific section take the full top row of the grid */
+.sci-keys {
+    grid-column: span 4;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
 }
 
 button:hover {
