@@ -5,8 +5,11 @@
     --accent: #ffb7c5;
 }
 
-[data-theme="yellow"] { --bg-img: url('yellow.jpg'); --accent: #f1c40f; }
-[data-theme="olive"] { --bg-img: url('olive.jpg'); --accent: #829460; }
+[data-theme="yellow"] { --bg-img: url('yellow.png'); --accent: #f1c40f; }
+[data-theme="olive"] { --bg-img: url('olive.png'); --accent: #829460; }
+/* Added Brown Theme */
+[data-theme="brown"] { --bg-img: url('brown.png'); --accent: #8b5a2b; }
+
 [data-mode="dark"] {
     --glass: rgba(0, 0, 0, 0.75);
     --text: #fff;
@@ -43,7 +46,10 @@ body {
 }
 
 .dot { width: 18px; height: 18px; border-radius: 50%; display: inline-block; cursor: pointer; margin-right: 5px; }
-.yellow { background: #f1c40f; } .pink { background: #ffb7c5; } .olive { background: #829460; }
+.yellow { background: #f1c40f; } 
+.pink { background: #ffb7c5; } 
+.olive { background: #829460; }
+.brown { background: #8b5a2b; } /* Brown dot color */
 
 .mode-btn { background: none; border: none; font-size: 1.2rem; cursor: pointer; }
 
@@ -63,7 +69,7 @@ body {
 }
 
 .btn {
-    aspect-ratio: 1/1; /* Keeps buttons perfectly round */
+    aspect-ratio: 1/1; 
     border: none;
     border-radius: 50%;
     font-size: 1.1rem;
