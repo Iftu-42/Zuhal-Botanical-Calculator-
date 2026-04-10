@@ -1,67 +1,58 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="olive" data-mode="light">
+<html lang="en" data-theme="pink" data-mode="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aesthetic Glass Calculator</title>
+    <title>Botanical Calculator</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="background-blobs"></div>
+<div class="calculator-card">
+    <div class="header-controls">
+        <div class="theme-dots">
+            <div class="dot yellow" onclick="setTheme('yellow')"></div>
+            <div class="dot pink" onclick="setTheme('pink')"></div>
+            <div class="dot olive" onclick="setTheme('olive')"></div>
+            <div class="dot brown" onclick="setTheme('brown')"></div>
 
-    <div class="calculator-container">
-        <div class="controls">
-            <div class="color-pickers">
-                <button onclick="setTheme('yellow')" class="btn-y"></button>
-                <button onclick="setTheme('pink')" class="btn-p"></button>
-                <button onclick="setTheme('olive')" class="btn-o"></button>
-                <button onclick="setTheme('brown')" class="btn-b"></button>
-            </div>
-            <button id="mode-toggle" onclick="toggleMode()">🌙</button>
         </div>
-
-        <div class="glass-calculator">
-            <div class="display">
-                <div id="previous-operand"></div>
-                <div id="current-operand">0</div>
-            </div>
-            
-            <div class="buttons">
-                <div class="sci-keys">
-                    <button class="btn-sci" onclick="appendSci('sin')">sin</button>
-                    <button class="btn-sci" onclick="appendSci('cos')">cos</button>
-                    <button class="btn-sci" onclick="appendSci('tan')">tan</button>
-                    <button class="btn-sci" onclick="appendSci('log')">log</button>
-                </div>
-
-                <button class="btn-spec" onclick="clearDisplay()">AC</button>
-                <button class="btn-spec" onclick="deleteNumber()">DEL</button>
-                <button class="btn-op" onclick="chooseOperator('%')">%</button>
-                <button class="btn-op" onclick="chooseOperator('/')">÷</button>
-
-                <button onclick="appendNumber('7')">7</button>
-                <button onclick="appendNumber('8')">8</button>
-                <button onclick="appendNumber('9')">9</button>
-                <button class="btn-op" onclick="chooseOperator('*')">×</button>
-
-                <button onclick="appendNumber('4')">4</button>
-                <button onclick="appendNumber('5')">5</button>
-                <button onclick="appendNumber('6')">6</button>
-                <button class="btn-op" onclick="chooseOperator('-')">−</button>
-
-                <button onclick="appendNumber('1')">1</button>
-                <button onclick="appendNumber('2')">2</button>
-                <button onclick="appendNumber('3')">3</button>
-                <button class="btn-op" onclick="chooseOperator('+')">+</button>
-
-                <button onclick="appendNumber('0')" class="span-two">0</button>
-                <button onclick="appendNumber('.')">.</button>
-                <button class="btn-equal" onclick="compute()">=</button>
-            </div>
-        </div>
+        <button id="mode-toggle" class="mode-btn">🌙</button>
     </div>
 
-    <script src="script.js"></script>
+    <div class="screen">
+        <div id="prev-action" class="history"></div>
+        <div id="output" class="current">0</div>
+    </div>
+
+    <div class="button-grid">
+        <button class="btn sci" onclick="append('Math.PI')">π</button>
+        <button class="btn sci" onclick="append('Math.sqrt(')">√</button>
+        <button class="btn sci" onclick="append('**')">^</button>
+        <button class="btn clear" onclick="allClear()">AC</button>
+
+        <button class="btn" onclick="append('7')">7</button>
+        <button class="btn" onclick="append('8')">8</button>
+        <button class="btn" onclick="append('9')">9</button>
+        <button class="btn oper" onclick="append('/')">÷</button>
+
+        <button class="btn" onclick="append('4')">4</button>
+        <button class="btn" onclick="append('5')">5</button>
+        <button class="btn" onclick="append('6')">6</button>
+        <button class="btn oper" onclick="append('*')">×</button>
+
+        <button class="btn" onclick="append('1')">1</button>
+        <button class="btn" onclick="append('2')">2</button>
+        <button class="btn" onclick="append('3')">3</button>
+        <button class="btn oper" onclick="append('-')">-</button>
+
+        <button class="btn" onclick="append('0')">0</button>
+        <button class="btn" onclick="append('.')">.</button>
+        <button class="btn equal" onclick="compute()">=</button>
+        <button class="btn oper" onclick="append('+')">+</button>
+    </div>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
