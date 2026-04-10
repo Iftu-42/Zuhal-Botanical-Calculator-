@@ -1,81 +1,75 @@
 :root {
-    --bg-img: url('pink.png');
-    --glass: rgba(255, 255, 255, 0.45);
-    --text: #2d3436;
-    --accent: #ffb7c5;
+    /* Default Background (Olive) */
+    --bg-image: url('olive.png');
+    --accent-color: #708238;
+    --glass-color: rgba(255, 255, 255, 0.2);
+    --text-color: #2d3436;
 }
 
-[data-theme="yellow"] { --bg-img: url('yellow.png'); --accent: #e1b12c; }
-[data-theme="olive"] { --bg-img: url('olive.png'); --accent: #7a8a68; }
-[data-theme="brown"] { --bg-img: url('brown.png'); --accent: #8d6e63; }
+/* Theme Switching Logic */
+[data-theme="yellow"] { --bg-image: url('yellow.png'); --accent-color: #eec01c; }
+[data-theme="pink"] { --bg-image: url('pink.png'); --accent-color: #d48491; }
+[data-theme="brown"] { --bg-image: url('brown.png'); --accent-color: #8b5a2b; }
 
+/* Dark Mode Overlays */
 [data-mode="dark"] {
-    --glass: rgba(0, 0, 0, 0.6);
-    --text: #ffffff;
+    --glass-color: rgba(0, 0, 0, 0.4);
+    --text-color: #ffffff;
 }
-
-* { box-sizing: border-box; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
 
 body {
-    background: var(--bg-img) no-repeat center center fixed;
-    background-size: cover;
-    height: 100dvh;
+    margin: 0;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0;
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
+    /* This applies your uploaded images */
+    background: var(--bg-image) no-repeat center center/cover;
+    transition: background-image 0.5s ease-in-out;
 }
 
-.calculator-card {
-    background: var(--glass);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    width: 90%;
-    max-width: 370px;
+/* The Glass Effect */
+.glass-calculator {
+    width: 340px;
     padding: 25px;
-    border-radius: 45px;
+    border-radius: 45px; /* Cute rounded look */
+    background: var(--glass-color);
+    backdrop-filter: blur(25px) saturate(200%); /* Stronger glassmorphism */
+    -webkit-backdrop-filter: blur(25px) saturate(200%);
     border: 1px solid rgba(255, 255, 255, 0.4);
-    box-shadow: 0 25px 50px rgba(0,0,0,0.1);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.15);
 }
 
-.header-controls { display: flex; justify-content: space-between; margin-bottom: 20px; align-items: center; }
-
-.dot { width: 16px; height: 16px; border-radius: 50%; display: inline-block; cursor: pointer; margin-right: 6px; border: 1px solid rgba(0,0,0,0.1); }
-.yellow { background: #f1c40f; } .pink { background: #ffb7c5; } .olive { background: #829460; } .brown { background: #8d6e63; }
-
-.mode-pill { background: white; border: none; padding: 6px 14px; border-radius: 20px; font-weight: 600; font-size: 0.75rem; cursor: pointer; color: #333; }
-
-.section-toggle { display: flex; background: rgba(0,0,0,0.05); border-radius: 15px; margin-bottom: 20px; padding: 4px; }
-.section-toggle button { flex: 1; border: none; background: none; padding: 8px; border-radius: 12px; cursor: pointer; font-weight: 600; color: var(--text); }
-.section-toggle button.active { background: var(--accent); color: white; }
-
-.screen { text-align: right; font-size: 3rem; color: var(--text); margin-bottom: 15px; padding: 10px; min-height: 80px; word-break: break-all; }
-
-.button-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
-
-/* Section logic */
-.sci-keys { display: contents; }
-[data-section="std"] .sci-keys { display: none; }
-
-.btn {
-    aspect-ratio: 1/1;
+/* Buttons */
+button {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%; /* Perfect circles */
     border: none;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.4);
-    color: var(--text);
-    font-size: 1.1rem;
-    font-weight: 600;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-color);
+    font-size: 1.2rem;
     cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.btn:hover { background: rgba(255,255,255,0.6); }
-.btn:active { transform: scale(0.92); }
-.oper { color: var(--accent); background: rgba(255,255,255,0.2); }
-.equal { background: var(--accent); color: white; border-radius: 40px; }
-.special { font-size: 0.9rem; opacity: 0.8; }
+button:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.3);
+}
 
-@media (max-width: 380px) {
-    .calculator-card { padding: 15px; }
-    .btn { font-size: 1rem; }
+.btn-op {
+    color: var(--accent-color);
+    font-weight: bold;
+}
+
+.btn-equal {
+    background: var(--accent-color);
+    color: white;
+    width: 140px; /* Aesthetic pill shape for equal */
+    border-radius: 40px;
 }
